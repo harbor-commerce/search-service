@@ -9,4 +9,11 @@ def search(term):
     return sorted(d for d, words in DOCS.items() if term.lower() in words)
 
 
+def reindex(products):
+    DOCS.clear()
+    for p in products:
+        add(p["id"], p["name"])
+    return len(DOCS)
+
+
 ROUTES = {"/index/size": lambda: {"docs": len(DOCS)}}
